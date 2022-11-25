@@ -18,7 +18,12 @@ namespace top_players
                 new Player("Svin", 57, 19),
                 new Player("Миха", 80, 23),
                 new Player("Степа", 12, 2),
-                new Player("Газкул", 114, 29),
+                new Player("Газкул", 114, 23),
+                new Player("Lisa", 31, 7),
+                new Player("MiniSpirt", 109, 29),
+                new Player("Stef", 110, 28),
+                new Player("Киря", 95, 24),
+                new Player("Roberto", 92, 24),
             });
             int count = 3;
 
