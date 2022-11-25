@@ -25,18 +25,18 @@ namespace top_players
                 new Player("Киря", 95, 24),
                 new Player("Roberto", 92, 24),
             });
-            int count = 3;
+            int topPlayersCount = 3;
 
             database.SortByLevel();
 
-            Console.WriteLine($"Топ {count} по Уровню:");
+            Console.WriteLine($"Топ {topPlayersCount} по Уровню:");
 
-            database.ShowTop(count);
+            database.ShowTop(topPlayersCount);
             database.SortByStrength();
 
-            Console.WriteLine($"\nТоп {count} по Силе:");
+            Console.WriteLine($"\nТоп {topPlayersCount} по Силе:");
 
-            database.ShowTop(count);
+            database.ShowTop(topPlayersCount);
 
             Console.ReadKey();
         }
@@ -44,31 +44,31 @@ namespace top_players
 
     class Database
     {
-        private List<Player> _database;
+        private List<Player> _players;
 
-        public Database(List<Player> database)
+        public Database(List<Player> players)
         {
-            _database = database;
+            _players = players;
         }
 
         public void SortByLevel()
         {
-            _database = _database.OrderByDescending(player => player.Level).ToList();
+            _players = _players.OrderByDescending(player => player.Level).ToList();
         }
 
         public void SortByStrength()
         {
-            _database = _database.OrderByDescending(player => player.Strength).ToList();
+            _players = _players.OrderByDescending(player => player.Strength).ToList();
         }
 
         public void ShowTop(int count)
         {
-            if(count > _database.Count)
-                count = _database.Count;
+            if(count > _players.Count)
+                count = _players.Count;
 
             for(int i = 0; i < count; i++)
             {
-                Console.WriteLine($"{i + 1}.{_database[i].Name}");
+                Console.WriteLine($"{i + 1}.{_players[i].Name}");
             }
         }
     }
