@@ -23,20 +23,15 @@ namespace top_players
                 new Player("MiniSpirt", 109, 29),
                 new Player("Stef", 110, 28),
                 new Player("Киря", 95, 24),
-                new Player("Roberto", 92, 24),
+                new Player("Roberto", 92, 24)
             });
             int topPlayersCount = 3;
 
-            database.SortByLevel();
+            database.ShowTopByLevel(topPlayersCount);
 
-            Console.WriteLine($"Топ {topPlayersCount} по Уровню:");
+            Console.WriteLine();
 
-            database.ShowTop(topPlayersCount);
-            database.SortByStrength();
-
-            Console.WriteLine($"\nТоп {topPlayersCount} по Силе:");
-
-            database.ShowTop(topPlayersCount);
+            database.ShowTopByStrength(topPlayersCount);
 
             Console.ReadKey();
         }
@@ -51,24 +46,25 @@ namespace top_players
             _players = players;
         }
 
-        public void SortByLevel()
+        public void ShowTopByLevel(int topPlayersCount)
         {
-            _players = _players.OrderByDescending(player => player.Level).ToList();
+            Console.WriteLine($"Топ {topPlayersCount} по Уровню:");
+
+            ShowTop(_players.OrderByDescending(player => player.Level).Take(topPlayersCount).ToList());
         }
 
-        public void SortByStrength()
+        public void ShowTopByStrength(int topPlayersCount)
         {
-            _players = _players.OrderByDescending(player => player.Strength).ToList();
+            Console.WriteLine($"Топ {topPlayersCount} по Силе:");
+
+            ShowTop(_players.OrderByDescending(player => player.Strength).Take(topPlayersCount).ToList());
         }
 
-        public void ShowTop(int count)
+        public void ShowTop(List<Player> top)
         {
-            if(count > _players.Count)
-                count = _players.Count;
-
-            for(int i = 0; i < count; i++)
+            for(int i = 0; i < top.Count; i++)
             {
-                Console.WriteLine($"{i + 1}.{_players[i].Name}");
+                Console.WriteLine($"{i + 1}.{top[i].Name}");
             }
         }
     }
